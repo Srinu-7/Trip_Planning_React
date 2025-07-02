@@ -24,6 +24,8 @@ function SignupForm({ switchToLogin }) {
 
       const data = await response.json();
 
+      console.log('Signup Response:', data);
+
       if (!response.ok) {
         throw new Error(data.message || 'Sign up failed');
       }

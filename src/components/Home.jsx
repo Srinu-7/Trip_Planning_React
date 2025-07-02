@@ -15,6 +15,7 @@ function Home() {
       if (userData) {
         const parsed = JSON.parse(userData);
         if (parsed.jwt) {
+          console.log('Verifying token:', parsed.jwt);
           try {
             const res = await fetch('http://localhost:8080/auth/verify-token', {
               method: 'GET',

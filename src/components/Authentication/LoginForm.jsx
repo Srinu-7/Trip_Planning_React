@@ -22,6 +22,8 @@ function LoginForm({ switchToSignup, onLoginSuccess }) {
 
       const data = await response.json();
 
+      console.log('Login Response:', data);
+
       if (!response.ok) {
         throw new Error(data.message || 'Login failed');
       }
