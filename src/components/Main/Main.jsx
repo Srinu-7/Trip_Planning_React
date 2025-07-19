@@ -249,10 +249,11 @@ If a field is missing from the user's input, write "not mentioned".`,
       const jsonString = content.slice(firstCurly, lastCurly + 1);
 
       const parsed = JSON.parse(jsonString);
-
+      
       const rawBudget = parsed.trip_summary.budget;
       const numericBudget = parseFlexibleBudget(rawBudget);
       const formattedBudget = formatIndianNumber(numericBudget);
+
       parsed.trip_summary.budget = formattedBudget;
       parsed.trip_summary.start_date = parsed.trip_summary.start_date == "not mentioned" ? new Date().toLocaleDateString('en-GB').split('/').join('-') : parsed.trip_summary.start_date;
       
@@ -271,7 +272,7 @@ If a field is missing from the user's input, write "not mentioned".`,
 
     const requestBody = {
       destination: data.trip_summary.destination,
-      travelers: data.trip_summary.travelers,
+      travelers: parseInt(data.trip_summary.travelers) || 1,
       start_date: data.trip_summary.start_date,
       preferences: data.trip_summary.preferences,
       budget: data.trip_summary.budget,
